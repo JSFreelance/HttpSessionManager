@@ -2,4 +2,4 @@ package models
 
 import models.Item
 
-case class Basket(userId: Int, items: List[Item])
+case class Basket(user: String, items: List[Item])

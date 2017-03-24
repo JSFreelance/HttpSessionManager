@@ -5,6 +5,7 @@
 # An example controller showing a sample home page
 POST    /login                     controllers.api.v1.SessionController.login
 GET     /index/:name               controllers.api.v1.SessionController.index(name: String)
+GET     /basket/:name              controllers.api.v1.SessionController.getUserBasket(name: String)
 GET     /home                      controllers.api.v1.SessionController.home
 
 

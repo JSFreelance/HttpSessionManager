@@ -18,7 +18,7 @@ class SessionController @Inject() extends Controller
   val users: List[User] =  List(user)
   var item: Item = Item(1, 2.53, "awesome item!!")
   val items: List[Item] = List(item)
-  var basket: Basket = Basket(1, items)
+  var basket: Basket = Basket("jairo", items)
   var baskets = List()
 
   val userService = new UserService(users)
@@ -26,10 +26,19 @@ class SessionController @Inject() extends Controller
 
   basketService.insertBasket("jairo", basket)
 
-  implicit val userWrites = new Writes[User] {
+  implicit val userWrites = new Writes[User]
+  {
     def writes(user: User) = Json.obj(
       "id" -> user.id,
       "name" -> user.name
+    )
+  }
+
+  implicit val basketWrites = new Writes[Basket]
+  {
+    def writes(basket: Basket) = Json.obj(
+      "user" -> basket.user,
+      "items" -> basket.items.length
     )
   }
 
@@ -45,6 +54,19 @@ class SessionController @Inject() extends Controller
       }else{
         Ok(Json.toJson(user_obj_list.head))
       }
+    }
+  }
+
+  def getUserBasket(name: String) = Secured {
+    Action{
+      val basket_obj_list = basketService.getBasket(name)
+
+      if(basket_obj_list.isEmpty){
+        Ok(Json.toJson("""{}"""))
+      }else{
+        Ok(Json.toJson(basket_obj_list.head))
+      }
+
     }
   }
 
