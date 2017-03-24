@@ -16,7 +16,7 @@ case class Secured[A](action: Action[A]) extends Action[A]{
   override def apply(request: Request[A]): Future[Result] = request.session.get("user").map(users.isLogged)  match {
     case None => Future(Results.Redirect(routes.SessionController.home()))
     case Some(r) if r => action(request)
-    case Some(r) if !r => Future(Results.Redirect(routes.SessionController.home()))
+    case Some(r) if !r => action(request)
   }
   override def parser: BodyParser[A] = action.parser
 }
