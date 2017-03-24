@@ -6,9 +6,7 @@ import models.User
 import services.UserService
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
-/**
-  * Created by jairo on 24/03/17.
-  */
+
 case class Secured[A](action: Action[A]) extends Action[A]{
   private val users: UserService = new UserService(List(User(1, "jairo", "pwd")))
 

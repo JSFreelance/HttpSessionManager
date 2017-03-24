@@ -19,16 +19,22 @@ class SessionController @Inject() extends Controller
   var item: Item = Item(1, 2.53, "awesome item!!")
   val items: List[Item] = List(item)
   var basket: Basket = Basket(1, items)
-  var baskets = List(basket)
+  var baskets = List()
 
   val userService = new UserService(users)
-  val basketService = new BasketService(baskets)
+  var basketService = BasketService
+
+  basketService.insertBasket("jairo", basket)
 
   implicit val userWrites = new Writes[User] {
     def writes(user: User) = Json.obj(
       "id" -> user.id,
       "name" -> user.name
     )
+  }
+
+  def home = Action {
+    Ok(Json.toJson("""{"current_path": "home"}"""))
   }
 
   def index(name: String) = Secured {
@@ -40,10 +46,6 @@ class SessionController @Inject() extends Controller
         Ok(Json.toJson(user_obj_list.head))
       }
     }
-  }
-
-  def home = Action {
-    Ok("home")
   }
 
   def login = Action {  request =>
