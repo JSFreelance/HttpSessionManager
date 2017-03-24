@@ -1,5 +1,7 @@
 
 ## Http Session Manager
+A http API session management.
+Practical use case: A ecommerce site
 
 #### Project main components:
 * Play Framework
