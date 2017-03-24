@@ -27,9 +27,12 @@ class SessionController @Inject() extends Controller
 
   def index(name: String) = Secured {
     Action{
-      val user_obj = userService.findUserByName(name).head
-      val user_json = Json.toJson(user_obj)
-      Ok(user_json)
+      val user_obj_list = userService.findUserByName(name)
+      if (user_obj_list.isEmpty){
+        Ok(Json.toJson("""{}"""))
+      }else{
+        Ok(Json.toJson(user_obj_list.head))
+      }
     }
   }
 
