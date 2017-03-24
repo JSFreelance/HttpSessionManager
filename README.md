@@ -20,7 +20,7 @@ GET  /basket/"user_name"
 
 
 #### Home page endpoint:
-GET  /home #home page
+GET  /home
 
 
 ## Running
