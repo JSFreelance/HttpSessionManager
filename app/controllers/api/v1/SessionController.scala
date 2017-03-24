@@ -17,9 +17,19 @@ class SessionController @Inject() extends Controller
   val users: List[User] =  List(user)
   val userService = new UserService(users)
 
+
+  implicit val userWrites = new Writes[User] {
+    def writes(user: User) = Json.obj(
+      "id" -> user.id,
+      "name" -> user.name
+    )
+  }
+
   def index(name: String) = Secured {
     Action{
-      Ok("name: " + name)
+      val user_obj = userService.findUserByName(name).head
+      val user_json = Json.toJson(user_obj)
+      Ok(user_json)
     }
   }
 
