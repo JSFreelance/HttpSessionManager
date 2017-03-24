@@ -2,16 +2,16 @@ package services
 
 import models.User
 
-class UserService() {
+case class UserService(users: List[User]) {
 
-  def findUserByName(name: String, userList: List[User]): List[User] =
+  def findUserByName(name: String): List[User] =
   {
-    userList.filter(_.name==name)
+    users.filter(_.name==name)
   }
 
-//  def isLogged(name: String): Boolean =
-//  {
-//    users.contains(name)
-//  }
+  def isLogged(name: String): Boolean =
+  {
+    users.contains(name)
+  }
 
 }

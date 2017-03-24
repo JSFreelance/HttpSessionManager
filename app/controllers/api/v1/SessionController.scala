@@ -29,7 +29,7 @@ class SessionController  @Inject() extends Controller
 
   val user: User = User(1, "jairo", "pwd")
   val users: List[User] =  List(user)
-  val userService = new UserService()
+  val userService = new UserService(users)
 
   def index(name: String) = Action{
     Ok("sd")
@@ -46,8 +46,8 @@ class SessionController  @Inject() extends Controller
         val decodeAuth = Base64.getDecoder().decode(auth)
         val credentials = new String(decodeAuth, "UTF-8").split(":")
 
-        if (true){
-          Redirect(routes.SessionController.index(credentials(0))) withSession("user" -> "jairo")
+        if (!userService.findUserByName(credentials(0)).isEmpty){
+          Redirect(routes.SessionController.index(credentials(0))) withSession("user" -> credentials(0))
         }else{
           Redirect(routes.SessionController.home)
         }
