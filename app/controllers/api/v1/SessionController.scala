@@ -1,25 +1,12 @@
 package controllers.api.v1
 
+import security.Secured
 import javax.inject._
 import java.util.Base64
-import play.api._
 import play.api.mvc._
-import play.api.mvc.Security
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import play.api.libs.json._
 import models.User
 import services.UserService
-
-case class Secured[A](action: Action[A]) extends Action[A]{
-  private val users: UserService = new UserService(List(User(1, "jairo", "pwd")))
-
-  override def apply(request: Request[A]): Future[Result] = request.session.get("user").map(users.isLogged)  match {
-    case None => Future(Results.Redirect(routes.SessionController.home()))
-    case Some(r) if r => action(request)
-    case Some(r) if !r => action(request)
-  }
-  override def parser: BodyParser[A] = action.parser
-}
 
 
 @Singleton
