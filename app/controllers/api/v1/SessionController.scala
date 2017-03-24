@@ -10,29 +10,30 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import models.User
 import services.UserService
 
-//case class Secured[A](action: Action[A]) extends Action[A]{
-//  private val users: UserService = new UserService()
-//
-//  override def apply(request: Request[A]): Future[Result] = request.session.get("user").map(users.isLogged)  match {
-//    case None => Future(Results.Redirect(routes.SessionController.index("jairo")))
-//    case Some(r) if r => action(request)
-//    case Some(r) if !r => Future(Results.Redirect("/login"))
-//  }
-//  override def parser: BodyParser[A] = action.parser
-//}
+case class Secured[A](action: Action[A]) extends Action[A]{
+  private val users: UserService = new UserService(List(User(1, "jairo", "pwd")))
 
+  override def apply(request: Request[A]): Future[Result] = request.session.get("user").map(users.isLogged)  match {
+    case None => Future(Results.Redirect(routes.SessionController.home()))
+    case Some(r) if r => action(request)
+    case Some(r) if !r => Future(Results.Redirect(routes.SessionController.home()))
+  }
+  override def parser: BodyParser[A] = action.parser
+}
 
 
 @Singleton
-class SessionController  @Inject() extends Controller
+class SessionController @Inject() extends Controller
 {
 
   val user: User = User(1, "jairo", "pwd")
   val users: List[User] =  List(user)
   val userService = new UserService(users)
 
-  def index(name: String) = Action{
-    Ok("sd")
+  def index(name: String) = Secured {
+    Action{
+      Ok("name: " + name)
+    }
   }
 
   def home = Action {
