@@ -24,6 +24,11 @@ object BasketService extends BasketService
     }
   }
 
+  def contains(user: String): Boolean =
+  {
+    baskets.contains(user)
+  }
+
   def getBasket(user: String): List[Basket] =
   {
     baskets.get(user) match {

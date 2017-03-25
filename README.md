@@ -3,6 +3,19 @@
 A http API session management.
 Practical use case: A ecommerce site
 
+
+# TO-DO:
+- [ ] Add session expiration feature
+- [ ] Add skinny ORM support in service layer
+- [ ] Production and Development environments built in Docker/Docker compose
+
+
+# DONE:
+- [x] Add logout feature
+- [x] Add login feature
+- [x] Private endpoints available only for authenticated users
+- [x] Retrieve basket feature
+
 #### Project main components:
 * Play Framework
 * SBT

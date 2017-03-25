@@ -7,19 +7,19 @@ import java.util.Base64
 import play.api.mvc._
 import play.api.libs.json._
 import models.{Basket, Item, User}
-import services.UserService
-import services.BasketService
+import services.{BasketService, ItemService, UserService}
 
 @Singleton
 class SessionController @Inject() extends Controller
 {
 
   val user: User = User(1, "jairo", "pwd")
-  val users: List[User] =  List(user)
+  val users: List[User] = List(user)
   var item: Item = Item(1, 2.53, "awesome item!!")
   val items: List[Item] = List(item)
+  val itemService = ItemService(items)
   var basket: Basket = Basket("jairo", items)
-  var baskets = List()
+  var baskets = List(basket)
 
   val userService = new UserService(users)
   var basketService = BasketService
@@ -42,6 +42,16 @@ class SessionController @Inject() extends Controller
     )
   }
 
+  implicit val itemWrites = new Writes[Item]
+  {
+    def writes(item: Item) = Json.obj(
+      "id" -> item.id,
+      "price" -> item.price,
+      "description" -> item.description
+    )
+  }
+
+
   def home = Action {
     Ok(Json.toJson("""{"current_path": "home"}"""))
   }
@@ -59,16 +69,37 @@ class SessionController @Inject() extends Controller
 
   def getUserBasket(name: String) = Secured {
     Action{
-      val basket_obj_list = basketService.getBasket(name)
+      val basket_obj_list = baskets
 
-      if(basket_obj_list.isEmpty){
+      if(baskets.isEmpty){
         Ok(Json.toJson("""{}"""))
       }else{
         Ok(Json.toJson(basket_obj_list.head))
       }
-
     }
   }
+
+  //TO-DO: implement a real data service layer: Maybe Skinny-ORM could be a good option
+
+//  def addItemToBasket(name: String, id: Int) = Secured {
+//    Action{ request =>
+//
+//      if(basketService.contains(name)){
+//        if (baskets.isEmpty){
+//          Ok("Basket does not exists")
+//        }else{
+//          val new_item = itemService.findItemById(1)
+//          if (new_item.isEmpty){
+//            Ok("Item does not exists")
+//          }else{
+//            Ok("Item exists")
+//          }
+//        }
+//      }else{
+//        Ok("sd")
+//      }
+//    }
+//  }
 
   def login = Action {  request =>
     request.headers.get("authorization") match{
@@ -87,5 +118,9 @@ class SessionController @Inject() extends Controller
         Redirect(routes.SessionController.home)
       }
     }
+  }
+
+  def logout = Action { implicit request =>
+    Redirect(routes.SessionController.home) withNewSession
   }
 }
