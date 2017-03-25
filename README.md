@@ -6,6 +6,7 @@ Practical use case: A ecommerce site
 
 # TO-DO:
 - [ ] Add session expiration feature
+- [ ] Update basket feature
 - [ ] Add skinny ORM support in service layer
 - [ ] Production and Development environments built in Docker/Docker compose
 
