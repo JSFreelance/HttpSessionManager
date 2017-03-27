@@ -11,7 +11,7 @@ Practical use case: A ecommerce site
 - [ ] Production and Development environments built in Docker/Docker compose
 
 # In process:
-- [ ] Add Tests
+- [ ] Add Tests (Code refactor, non redirect Controllers returns 303 code in tests instead of 200)
 # Done:
 - [x] Add logout feature
 - [x] Add login feature
