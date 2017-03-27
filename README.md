@@ -28,7 +28,12 @@ https://www.getpostman.com/
 
 
 ### Endpoints:
+
+#### Login:
 POST /login 
+
+#### Logout:
+GET /logout
 
 #### User info endpoint:
 
