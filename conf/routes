@@ -6,7 +6,6 @@
 POST    /login                      controllers.api.v1.SessionController.login
 GET     /index/:name                controllers.api.v1.SessionController.index(name: String)
 GET     /basket/:name               controllers.api.v1.SessionController.getUserBasket(name: String)
-#PUT     /basket_increment/:name/:id controllers.api.v1.SessionController.addItemToBasket(name: String, id: Int)
 GET     /home                       controllers.api.v1.SessionController.home
 GET     /logout                     controllers.api.v1.SessionController.logout
 

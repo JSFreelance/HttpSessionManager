@@ -79,27 +79,6 @@ class SessionController @Inject() extends Controller
     }
   }
 
-  //TO-DO: implement a real data service layer: Maybe Skinny-ORM could be a good option
-
-//  def addItemToBasket(name: String, id: Int) = Secured {
-//    Action{ request =>
-//
-//      if(basketService.contains(name)){
-//        if (baskets.isEmpty){
-//          Ok("Basket does not exists")
-//        }else{
-//          val new_item = itemService.findItemById(1)
-//          if (new_item.isEmpty){
-//            Ok("Item does not exists")
-//          }else{
-//            Ok("Item exists")
-//          }
-//        }
-//      }else{
-//        Ok("sd")
-//      }
-//    }
-//  }
 
   def login = Action {  request =>
     request.headers.get("authorization") match{
