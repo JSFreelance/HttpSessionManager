@@ -4,14 +4,15 @@ A http API session management.
 Practical use case: A ecommerce site
 
 
-# TO-DO:
+# To-do:
 - [ ] Add session expiration feature
 - [ ] Update basket feature
 - [ ] Add skinny ORM support in service layer
 - [ ] Production and Development environments built in Docker/Docker compose
 
-
-# DONE:
+# In process:
+- [ ] Add Tests
+# Done:
 - [x] Add logout feature
 - [x] Add login feature
 - [x] Private endpoints available only for authenticated users
