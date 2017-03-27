@@ -6,8 +6,9 @@ Practical use case: A ecommerce site
 
 # To-do:
 - [ ] Add session expiration feature
-- [ ] Update basket feature
 - [ ] Add skinny ORM support in service layer
+- [ ] Update basket feature
+- [ ] Add Pagination for all API endpoints (We can't display long data sets in only one request)
 - [ ] Production and Development environments built in Docker/Docker compose
 
 # In process:
@@ -21,6 +22,10 @@ Practical use case: A ecommerce site
 #### Project main components:
 * Play Framework
 * SBT
+
+#### Recommended for testing:
+https://www.getpostman.com/
+
 
 ### Endpoints:
 POST /login 
