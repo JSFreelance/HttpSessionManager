@@ -53,8 +53,7 @@ class SessionController @Inject() extends Controller
 
 
   def home = Action {
-    Ok(Json.toJson("""{"current_path": "home"}"""))
-//    Ok(request.headers.get("authorization").toString)
+    Status(200)(Json.toJson("""{"current_path": "home"}"""))
   }
 
   def index(name: String) = Secured {
