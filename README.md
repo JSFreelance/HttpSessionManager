@@ -6,13 +6,13 @@ Practical use case: A ecommerce site
 
 
 # To-do:
-- [ ] Add session expiration feature
 - [ ] Add skinny ORM support in service layer
 - [ ] Update basket feature
 - [ ] Add Pagination for all API endpoints (We can't display large data sets in only one request)
 - [ ] Production and Development environments built in Docker/Docker compose
 
 # In process:
+- [ ] Add session expiration feature
 
 # Done:
 - [x] Add Tests (Could be changed in a future)
