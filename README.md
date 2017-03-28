@@ -13,8 +13,9 @@ Practical use case: A ecommerce site
 - [ ] Production and Development environments built in Docker/Docker compose
 
 # In process:
-- [ ] Add Tests (Code refactor solved, our Secured class extends Action class, that's why We get 303 code in unit tests)
+
 # Done:
+- [x] Add Tests (Could be changed in a future)
 - [x] Add logout feature
 - [x] Add login feature
 - [x] Private endpoints available only for authenticated users
