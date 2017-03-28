@@ -7,18 +7,22 @@ Practical use case: A ecommerce site
 
 # To-do:
 - [ ] Add session expiration feature
-- [ ] Add skinny ORM support in service layer
+- [ ] Add skinny ORM suppor t in service layer
 - [ ] Update basket feature
 - [ ] Add Pagination for all API endpoints (We can't display large data sets in only one request)
 - [ ] Production and Development environments built in Docker/Docker compose
 
 # In process:
-- [ ] Add Tests (Code refactor, non redirect Controllers returns 303 code in unit tests instead of 200 [In web browser works well])
+- [ ] Add Tests (Code refactor solved, our Secured class extends Action class, that's why We get 303 code in unit tests)
 # Done:
 - [x] Add logout feature
 - [x] Add login feature
 - [x] Private endpoints available only for authenticated users
 - [x] Retrieve basket feature
+
+
+
+
 
 #### Project main components:
 * Play Framework
