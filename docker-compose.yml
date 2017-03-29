@@ -1,0 +1,11 @@
+version: '2'
+services:
+  api:
+    build: .
+    ports:
+      - "9000:9000"
+    command: sbt ~run
+    volumes:
+      - .:/code
+  postgres:
+    image: "postgres:latest"
