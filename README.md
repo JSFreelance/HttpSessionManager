@@ -6,13 +6,15 @@ Practical use case: A ecommerce site
 
 
 # To-do:
-- [ ] Add skinny ORM support in service layer
+- [ ] Add session expiration feature (Paused; first, we need a real service layer)
 - [ ] Update basket feature
 - [ ] Add Pagination for all API endpoints (We can't display large data sets in only one request)
-- [ ] Production and Development environments built in Docker/Docker compose
+
 
 # In process:
-- [ ] Add session expiration feature
+- [ ] Production and Development environments built in Docker/Docker compose (We want to implement a real datastore based in PostgreSQL, using Docker)
+- [ ] Add skinny ORM support in service layer (We want to remove mockups objects and implement real services)
+
 
 # Done:
 - [x] Add Tests (Could be changed in a future)
