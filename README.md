@@ -13,10 +13,10 @@ Practical use case: A ecommerce site
 
 # In process:
 - [ ] Production and Development environments built in Docker/Docker compose (We want to implement a real datastore based in PostgreSQL, using Docker)
-- [ ] Add skinny ORM support in service layer (We want to remove mockups objects and implement real services)
 
 
 # Done:
+- [x] Add Slick support in service layer (We want to remove mockups objects and implement real services)
 - [x] Add Tests (Could be changed in a future)
 - [x] Add logout feature
 - [x] Add login feature
