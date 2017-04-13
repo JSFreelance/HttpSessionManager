@@ -6,6 +6,10 @@
 POST    /login                      controllers.api.v1.SessionController.login
 GET     /index/:name                controllers.api.v1.SessionController.index(name: String)
 GET     /basket/:name               controllers.api.v1.SessionController.getUserBasket(name: String)
+GET     /users                      controllers.api.v1.SessionController.getUsers
+POST    /user/:name/:password       controllers.api.v1.SessionController.insertUser(name: String, password: String)
+DELETE  /users/delete/:id           controllers.api.v1.SessionController.deleteUser(id: Int)
+PUT     /users/update/:id           controllers.api.v1.SessionController.updateUser(id: Int)
 GET     /home                       controllers.api.v1.SessionController.home
 GET     /logout                     controllers.api.v1.SessionController.logout
 

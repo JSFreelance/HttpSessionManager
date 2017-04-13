@@ -6,14 +6,16 @@ import java.util.Base64
 
 import play.api.mvc._
 import play.api.libs.json._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import models.{Basket, Item, User}
 import services.{BasketService, ItemService, UserService}
+import dao.UserDAO
 
 @Singleton
-class SessionController @Inject() extends Controller
+class SessionController @Inject() (userDAO: UserDAO) extends Controller
 {
 
-  val user: User = User(1, "jairo", "pwd")
+  val user: User = User(None, "jairo", "pwd")
   val users: List[User] = List(user)
   var item: Item = Item(1, 2.53, "awesome item!!")
   val items: List[Item] = List(item)
@@ -79,6 +81,25 @@ class SessionController @Inject() extends Controller
     }
   }
 
+  def getUsers = Action.async {
+
+    userDAO.all().map { case (users) => Ok(Json.toJson(users)) }
+  }
+
+  def insertUser(name: String, password: String) = Action.async {
+    val user: User = User(None, name, password)
+    userDAO.insert(user).map(_ => Redirect(routes.SessionController.home))
+    userDAO.all().map { case (users) => Ok(Json.toJson(users)) }
+  }
+
+  def updateUser(id: Int) = Action.async { implicit rs =>
+    userDAO.update(3, User(None, "new", "pwd")).map( _ => Redirect(routes.SessionController.home))
+  }
+
+
+  def deleteUser(id: Int) = Action.async { implicit rs =>
+    userDAO.delete(id).map(_ => Redirect(routes.SessionController.home))
+  }
 
   def login = Action {  request =>
     request.headers.get("authorization") match{
