@@ -6,14 +6,14 @@ Practical use case: A ecommerce site
 
 
 # To-do:
-- [ ] Migrate to play 2.7
+
 - [ ] Add session expiration feature (Paused; first, we need a real service layer)
 - [ ] Update basket feature
 - [ ] Add Pagination for all API endpoints (We can't display large data sets in only one request)
-
+- [ ] Production and Development environments built in Docker/Docker compose (We want to implement a real datastore based in PostgreSQL, using Docker)
 
 # In process:
-- [ ] Production and Development environments built in Docker/Docker compose (We want to implement a real datastore based in PostgreSQL, using Docker)
+- [ ] Migrate to play 2.7
 
 
 # Done:
