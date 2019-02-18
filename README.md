@@ -13,7 +13,6 @@ Practical use case: A ecommerce site
 - [ ] Production and Development environments built in Docker/Docker compose (We want to implement a real datastore based in PostgreSQL, using Docker)
 
 # In process:
-- [ ] Migrate to play 2.7
 
 
 # Done:
