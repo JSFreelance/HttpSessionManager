@@ -1,5 +1,5 @@
 package models
 
-import models.Item
+import models._
 
 case class Basket(user: String, items: List[Item])

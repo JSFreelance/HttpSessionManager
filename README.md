@@ -57,6 +57,7 @@ GET  /home
 
 
 ## Running
+tested using java 8
 
 ```
 sbt run
